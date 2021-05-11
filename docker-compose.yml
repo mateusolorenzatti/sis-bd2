@@ -3,12 +3,13 @@
 php:
     build: .
     ports:
-     - "80:80"
+     - "8084:80"
      - "443:443"
     volumes:
      - ./public:/var/www/html
     links:
         - db
+
 db:
     image: mysql:8
     ports:
@@ -18,6 +19,12 @@ db:
     environment:
         - MYSQL_DATABASE=db_app_db2
         - MYSQL_ROOT_PASSWORD=123456
+
+# adminer:
+#     image: adminer
+#     restart: always
+#     ports:
+#         - 8080:8080
 
 #docker exec -it app_bd2_db_1  mysql --user=root --password=123456
 #select host, user from mysql.user;
